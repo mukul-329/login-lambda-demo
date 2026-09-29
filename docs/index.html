@@ -1,200 +1,254 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Me</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 100vh;
+        }
+
+        .contact-box {
+            width: 400px;
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            margin-top: 0;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: bold;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+
+            padding: 12px;
+
+            margin-bottom: 18px;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            font-size: 14px;
+        }
+
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+
+            padding: 12px;
+
+            border: none;
+            border-radius: 6px;
+
+            background: #2563eb;
+            color: white;
+
+            font-size: 16px;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        button:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        #message {
+            margin-top: 15px;
+            text-align: center;
+        }
+    </style>
+
 </head>
 
-<body style="
-    margin: 0;
-    padding: 0;
-    background-color: #f4f6f8;
-    font-family: Arial, Helvetica, sans-serif;
-">
+<body>
 
-    <table width="100%" cellpadding="0" cellspacing="0"
-           style="padding: 30px 10px;">
+<div class="contact-box">
 
-        <tr>
-            <td align="center">
+    <h2>Contact Me</h2>
 
-                <table width="600"
-                       cellpadding="0"
-                       cellspacing="0"
-                       style="
-                           max-width: 600px;
-                           width: 100%;
-                           background-color: #ffffff;
-                           border-radius: 10px;
-                           overflow: hidden;
-                           border: 1px solid #e5e7eb;
-                       ">
+    <form id="contactForm">
 
-                    <!-- Header -->
-                    <tr>
-                        <td style="
-                            background-color: #111827;
-                            padding: 25px 30px;
-                            color: #ffffff;
-                        ">
+        <label for="email">
+            Email
+        </label>
 
-                            <div style="
-                                font-size: 22px;
-                                font-weight: bold;
-                            ">
-                                New Contact Request
-                            </div>
-
-                            <div style="
-                                margin-top: 6px;
-                                font-size: 13px;
-                                color: #d1d5db;
-                            ">
-                                Portfolio Website
-                            </div>
-
-                        </td>
-                    </tr>
+        <input
+            type="email"
+            id="email"
+            placeholder="your@email.com"
+            required
+        >
 
 
-                    <!-- Content -->
-                    <tr>
-                        <td style="padding: 30px;">
+        <label for="contact">
+            Contact Number
+        </label>
 
-                            <div style="
-                                font-size: 14px;
-                                color: #6b7280;
-                                margin-bottom: 20px;
-                            ">
-                                You have received a new message through
-                                your portfolio contact form.
-                            </div>
+        <input
+            type="tel"
+            id="contact"
+            placeholder="+91 9876543210"
+            required
+        >
 
 
-                            <!-- Email -->
-                            <div style="margin-bottom: 22px;">
+        <label for="message">
+            Message
+        </label>
 
-                                <div style="
-                                    font-size: 12px;
-                                    color: #6b7280;
-                                    text-transform: uppercase;
-                                    font-weight: bold;
-                                    margin-bottom: 6px;
-                                ">
-                                    Email
-                                </div>
-
-                                <div style="
-                                    font-size: 15px;
-                                    color: #111827;
-                                ">
-                                    {email}
-                                </div>
-
-                            </div>
+        <textarea
+            id="messageText"
+            placeholder="Write your message..."
+            required
+        ></textarea>
 
 
-                            <!-- Contact -->
-                            <div style="margin-bottom: 22px;">
+        <button type="submit" id="submitButton">
+            Send Message
+        </button>
 
-                                <div style="
-                                    font-size: 12px;
-                                    color: #6b7280;
-                                    text-transform: uppercase;
-                                    font-weight: bold;
-                                    margin-bottom: 6px;
-                                ">
-                                    Contact
-                                </div>
+    </form>
 
-                                <div style="
-                                    font-size: 15px;
-                                    color: #111827;
-                                ">
-                                    {contact}
-                                </div>
+    <div id="status"></div>
 
-                            </div>
+</div>
 
 
-                            <!-- Message -->
-                            <div>
+<script>
 
-                                <div style="
-                                    font-size: 12px;
-                                    color: #6b7280;
-                                    text-transform: uppercase;
-                                    font-weight: bold;
-                                    margin-bottom: 8px;
-                                ">
-                                    Message
-                                </div>
-
-                                <div style="
-                                    background-color: #f9fafb;
-                                    border-left: 4px solid #2563eb;
-                                    padding: 15px;
-                                    font-size: 15px;
-                                    line-height: 1.6;
-                                    color: #374151;
-                                    border-radius: 4px;
-                                ">
-                                    {message}
-                                </div>
-
-                            </div>
+const API_URL =
+    "API_URL";
 
 
-                            <!-- Reply Button -->
-                            <div style="
-                                margin-top: 30px;
-                                text-align: center;
-                            ">
+document
+    .getElementById("contactForm")
+    .addEventListener("submit", async function(event) {
 
-                                <a href="mailto:{email}"
-                                   style="
-                                       display: inline-block;
-                                       background-color: #2563eb;
-                                       color: #ffffff;
-                                       text-decoration: none;
-                                       padding: 12px 24px;
-                                       border-radius: 6px;
-                                       font-size: 14px;
-                                       font-weight: bold;
-                                   ">
-                                    Reply to Visitor
-                                </a>
+        event.preventDefault();
 
-                            </div>
+        const email =
+            document.getElementById("email").value;
 
-                        </td>
-                    </tr>
+        const contact =
+            document.getElementById("contact").value;
+
+        const message =
+            document.getElementById("messageText").value;
+
+        const button =
+            document.getElementById("submitButton");
+
+        const status =
+            document.getElementById("status");
 
 
-                    <!-- Footer -->
-                    <tr>
-                        <td style="
-                            background-color: #f9fafb;
-                            padding: 18px 30px;
-                            text-align: center;
-                            border-top: 1px solid #e5e7eb;
-                        ">
+        button.disabled = true;
 
-                            <div style="
-                                font-size: 12px;
-                                color: #9ca3af;
-                            ">
-                                This message was sent from your
-                                portfolio contact form.
-                            </div>
+        button.innerText = "Sending...";
 
-                        </td>
-                    </tr>
+        status.innerText = "";
 
-                </table>
 
-            </td>
-        </tr>
+        try {
 
-    </table>
+            const response = await fetch(API_URL, {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    email: email,
+
+                    contact: contact,
+
+                    message: message
+
+                })
+
+            });
+
+
+            const result = await response.json();
+
+
+            if (response.ok) {
+
+                status.innerText =
+                    "Message sent successfully!";
+
+                document
+                    .getElementById("contactForm")
+                    .reset();
+
+            } else {
+
+                status.innerText =
+                    result.message || "Something went wrong.";
+
+            }
+
+
+        } catch (error) {
+
+            console.error(error);
+
+            status.innerText =
+                "Unable to send message.";
+
+        }
+
+
+        button.disabled = false;
+
+        button.innerText = "Send Message";
+
+    });
+
+</script>
 
 </body>
+
 </html>
